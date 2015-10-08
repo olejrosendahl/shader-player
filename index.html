@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <title>Shader Player</title>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        overflow: none;
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="audio" src="/assets/audio/audio.mp3"></audio>
+    <script type="text/javascript" src="src/js/lib/three.js"></script>
+    <script type="text/javascript" src="src/js/lib/Detector.js"></script>
+    <script type="x-shader/x-vertex" id="vertexShader">
+      void main() {
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentShader">
+      uniform float time;
+      uniform vec2 mouse;
+      uniform vec2 resolution;
+
+      mat2 rotate(in float theta) {
+        return mat2(cos(theta), -sin(theta), sin(theta), cos(theta));
+      }
+
+      void main() {
+        vec2 p = 2. * gl_FragCoord.xy / resolution.xy - 1.;
+        p.x *= resolution.x / resolution.y;
+        p *= (2. + cos(time*.5 + length(p)) * (4.+21.*mouse.x)) * rotate(time * (0.5-mouse.y));
+
+        float f = (length(p / p.x / p.y));
+
+        f *= cos(p.x * 1.5)-sin(p.x*p.y);
+        f *= cos(p.y * 1.5)+sin(p.x*p.y);
+
+        vec3 c = vec3(0.6+0.4*sin(time), 0.5+0.2*cos(time*1.22), 0.5-0.3*sin(time*0.33))*f*f*.62;
+
+        gl_FragColor = vec4(c,1.0);
+      }
+    </script>
+    <script type="text/javascript">
+      if (!Detector.webgl) Detector.addGetWebGLMessage();
+
+      var camera, renderer, scene, clock, delta, screen, mouse = new THREE.Vector2();
+
+      var audioCtx = new AudioContext();
+      var audio = document.getElementById("audio");
+      var audioSrc = audioCtx.createMediaElementSource(audio);
+      var analyser = audioCtx.createAnalyser();
+
+      audioSrc.connect(analyser);
+      audioSrc.connect(audioCtx.destination);
+
+      var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+      var customUniforms = {
+        time: {
+          type: "f",
+          value: 1.0
+        },
+        resolution: {
+          type: "v2",
+          value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+        },
+        mouse: {
+          type: "v2",
+          value: new THREE.Vector2(1.0, 1.0)
+         },
+      };
+
+      function setup() {
+        setupThreeJS();
+        setupWorld();
+
+        requestAnimationFrame(function animate() {
+            renderer.render(scene, camera);
+
+            var t = clock.getElapsedTime();
+
+            customUniforms.time.value = t;
+            customUniforms.mouse.value.x = frequencyData[1] * Math.PI / 100
+            customUniforms.mouse.value.y = frequencyData[2] * Math.PI / 100;
+
+            analyser.getByteFrequencyData(frequencyData);
+
+            requestAnimationFrame(animate);
+            console.log(frequencyData);
+        });
+      }
+
+      function setupThreeJS() {
+        camera = new THREE.PerspectiveCamera(75,
+            window.innerWidth / window.innerHeight, 1, 10000);
+        camera.position.z = 20;
+
+        renderer = new THREE.WebGLRenderer({antialiasing: true});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000);
+
+        scene = new THREE.Scene();
+        clock = new THREE.Clock();
+
+        document.body.appendChild(renderer.domElement);
+      }
+
+      function setupWorld() {
+        screen = new THREE.Mesh(
+            new THREE.PlaneGeometry(256, 256, 256, 256),
+            new THREE.ShaderMaterial({
+              uniforms: customUniforms,
+              vertexShader: document.getElementById("vertexShader").text,
+              fragmentShader: document.getElementById("fragmentShader").text,
+            })
+        );
+        scene.add(screen);
+
+        var pointLight = new THREE.PointLight(0xffffff, 1.0);
+        pointLight.position.z = 100;
+        scene.add(pointLight);
+      }
+
+      window.addEventListener('resize', function() {
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+      });
+
+      setup();
+      audio.play();
+    </script>
+  </body>
+</html>
