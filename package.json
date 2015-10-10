@@ -17,16 +17,19 @@
   },
   "homepage": "https://github.com/olejrosendahl/shader-player#readme",
   "dependencies": {
+    "jquery": "^2.1.4",
+    "npm": "^3.3.5",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
+  },
+  "devDependencies": {
     "babelify": "^6.3.0",
     "browserify": "^11.2.0",
     "cli-color": "^1.0.0",
     "glslify": "^2.3.1",
     "gulp": "^3.9.0",
     "gulp-load-plugins": "^0.10.0",
-    "jquery": "^2.1.4",
-    "npm": "^3.3.5",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
+    "gulp-util": "^3.0.6",
     "run-sequence": "^1.1.4",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0"
