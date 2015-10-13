@@ -5,6 +5,7 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var babelify = require('babelify');
 var watchify = require('watchify');
+var glslify = require('glslify');
 
 module.exports = function(gulp, opts, $){
     var config = opts.config;
@@ -19,6 +20,7 @@ module.exports = function(gulp, opts, $){
             extensions: ['js']
         });
         b.transform(babelify);
+        b.transform(glslify);
         b = watch ? watchify(b) : b;
         b.add('./'+config.target);
 

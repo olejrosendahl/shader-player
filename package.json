@@ -27,6 +27,7 @@
     "babelify": "^6.3.0",
     "browserify": "^11.2.0",
     "cli-color": "^1.0.0",
+    "esparse": "^0.1.2",
     "glslify": "^2.3.1",
     "gulp": "^3.9.0",
     "gulp-load-plugins": "^0.10.0",
