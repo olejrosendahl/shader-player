@@ -42,11 +42,10 @@ function setup() {
 
       var t = clock.getElapsedTime();
 
+      analyser.getByteFrequencyData(frequencyData);
       customUniforms.time.value = t;
       customUniforms.mouse.value.x = frequencyData[1] * Math.PI / 100
       customUniforms.mouse.value.y = frequencyData[2] * Math.PI / 100;
-
-      analyser.getByteFrequencyData(frequencyData);
 
       requestAnimationFrame(animate);
   });
@@ -90,8 +89,7 @@ window.addEventListener('resize', function() {
 });
 
 setup();
-audio.play();
 
 $(document).ready(function() {
-    ReactDOM.render(<ShaderPlayer />, document.getElementById('shader-player'));
+    ReactDOM.render(<ShaderPlayer audio={audio}/>, document.getElementById('shader-player'));
 });

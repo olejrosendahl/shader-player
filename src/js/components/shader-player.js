@@ -5,16 +5,16 @@ let PlayButton = React.createClass({
     return <button onClick={this._handleClick}>Play</button>
   },
   _handleClick() {
-    alert("Play!");
+    this.props.audio.play();
   }
 })
 
-let StopButton = React.createClass({
+let PauseButton = React.createClass({
   render() {
-    return <button onClick={this._handleClick}>Stop</button>
+    return <button onClick={this._handleClick}>Pause</button>
   },
   _handleClick() {
-    alert("Stop!");
+    this.props.audio.pause();
   }
 });
 
@@ -22,8 +22,8 @@ let ShaderPlayer = React.createClass({
   render() {
     return (
       <ul>
-        <PlayButton />
-        <StopButton />
+        <PlayButton {...this.props} />
+        <PauseButton {...this.props} />
       </ul>
     );
   }
