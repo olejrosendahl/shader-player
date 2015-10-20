@@ -1,8 +1,14 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
+import { Button } from 'react-bootstrap';
 
 let PlayButton = React.createClass({
   render() {
-    return <button onClick={this._handleClick}>Play</button>
+    return (
+      <Button onClick={this._handleClick}>
+        <FontAwesome name="play" />
+      </Button>
+    );
   },
   _handleClick() {
     this.props.audio.play();
@@ -11,7 +17,11 @@ let PlayButton = React.createClass({
 
 let PauseButton = React.createClass({
   render() {
-    return <button onClick={this._handleClick}>Pause</button>
+    return (
+      <Button onClick={this._handleClick}>
+        <FontAwesome name="pause" />
+      </Button>
+    );
   },
   _handleClick() {
     this.props.audio.pause();
