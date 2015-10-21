@@ -11,6 +11,9 @@ let PlayButton = React.createClass({
     );
   },
   _handleClick() {
+    if (this.props.audio.currentTime == 0)
+      this.props.audio.load();
+
     this.props.audio.play();
   }
 })
@@ -28,13 +31,60 @@ let PauseButton = React.createClass({
   }
 });
 
+let StopButton = React.createClass({
+  render() {
+    return (
+      <Button onClick={this._handleClick}>
+        <FontAwesome name="stop" />
+      </Button>
+    );
+  },
+  _handleClick() {
+    this.props.audio.pause();
+    this.props.audio.currentTime = 0;
+  }
+});
+
+let FastBackwardButton = React.createClass({
+  render() {
+    return (
+      <Button onClick={this._handleClick}>
+        <FontAwesome name="fast-backward" />
+      </Button>
+    );
+  },
+  _handleClick() {
+    this.props.audio.currentTime = 0;
+    this.props.audio.load();
+    this.props.audio.play();
+  }
+});
+
+let FastForwardButton = React.createClass({
+  render() {
+    return (
+      <Button onClick={this._handleClick}>
+        <FontAwesome name="fast-forward" />
+      </Button>
+    );
+  },
+  _handleClick() {
+    this.props.audio.currentTime = this.props.audio.duration;
+  }
+});
+
 let ShaderPlayer = React.createClass({
   render() {
     return (
-      <ul>
-        <PlayButton {...this.props} />
-        <PauseButton {...this.props} />
-      </ul>
+      <div>
+        <ul>
+          <FastBackwardButton {...this.props} />
+          <PlayButton {...this.props} />
+          <FastForwardButton {...this.props} />
+          <PauseButton {...this.props} />
+          <StopButton {...this.props} />
+        </ul>
+      </div>
     );
   }
 });
