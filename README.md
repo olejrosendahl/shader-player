@@ -7,7 +7,7 @@ React Music Player with WebGL Visualizations
 An audio file is needed for the player to work. Place the audio file in `assets/audio/audio.mp3`. The audio file needs to be in either `mpeg` or `ogg` format.
 
 The player uses React to generate the GUI to control the music and the
-shaders. Sources needed to be rebundeled during development
+shaders. Rebundle the sources during development:
 
     $ gulp watch --target src/js/shader-player.js
 
