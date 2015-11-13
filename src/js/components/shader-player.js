@@ -1,12 +1,14 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Button } from 'react-bootstrap';
+import THREE from 'three';
+var glslify = require('glslify');
 
 let PlayButton = React.createClass({
   render() {
     return (
       <Button onClick={this._handleClick}>
-        <FontAwesome name="play" />
+        <FontAwesome name='play' />
       </Button>
     );
   },
@@ -16,13 +18,13 @@ let PlayButton = React.createClass({
 
     this.props.audio.play();
   }
-})
+});
 
 let PauseButton = React.createClass({
   render() {
     return (
       <Button onClick={this._handleClick}>
-        <FontAwesome name="pause" />
+        <FontAwesome name='pause' />
       </Button>
     );
   },
@@ -35,7 +37,7 @@ let StopButton = React.createClass({
   render() {
     return (
       <Button onClick={this._handleClick}>
-        <FontAwesome name="stop" />
+        <FontAwesome name='stop' />
       </Button>
     );
   },
@@ -49,7 +51,7 @@ let FastBackwardButton = React.createClass({
   render() {
     return (
       <Button onClick={this._handleClick}>
-        <FontAwesome name="fast-backward" />
+        <FontAwesome name='fast-backward' />
       </Button>
     );
   },
@@ -64,7 +66,7 @@ let FastForwardButton = React.createClass({
   render() {
     return (
       <Button onClick={this._handleClick}>
-        <FontAwesome name="fast-forward" />
+        <FontAwesome name='fast-forward' />
       </Button>
     );
   },
@@ -73,17 +75,39 @@ let FastForwardButton = React.createClass({
   }
 });
 
+let NextButton = React.createClass({
+  render() {
+    return (
+      <Button onClick={this._handleClick}>
+        <FontAwesome name='fast-forward' />
+      </Button>
+    );
+  },
+  _handleClick() {
+    screen = this.props.screen;
+    screen.material.fragmentShader = glslify(__dirname + '/../glsl/lines.glsl');
+    screen.material.needsUpdate = true;
+  }
+});
+
 let ShaderPlayer = React.createClass({
   render() {
     return (
       <div>
-        <ul>
-          <FastBackwardButton {...this.props} />
-          <PlayButton {...this.props} />
-          <FastForwardButton {...this.props} />
-          <PauseButton {...this.props} />
-          <StopButton {...this.props} />
-        </ul>
+        <div>
+          <ul>
+            <FastBackwardButton {...this.props} />
+            <PlayButton {...this.props} />
+            <FastForwardButton {...this.props} />
+            <PauseButton {...this.props} />
+            <StopButton {...this.props} />
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <NextButton {...this.props} />
+          </ul>
+        </div>
       </div>
     );
   }

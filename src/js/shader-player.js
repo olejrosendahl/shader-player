@@ -6,7 +6,7 @@ import $ from 'jquery';
 
 var glslify = require('glslify');
 
-var camera, renderer, scene, clock, delta, screen, mouse = new THREE.Vector2();
+var camera, renderer, scene, clock, delta, shader, material, mouse = new THREE.Vector2();
 
 var audioCtx = new AudioContext();
 var audio = document.getElementById("audio");
@@ -67,13 +67,13 @@ function setupThreeJS() {
 }
 
 function setupWorld() {
+  material = new THREE.ShaderMaterial({
+    uniforms: customUniforms,
+    vertexShader: glslify(__dirname + "/glsl/vertex.glsl"),
+    fragmentShader: glslify(__dirname + "/glsl/fragment.glsl")
+  });
   screen = new THREE.Mesh(
-      new THREE.PlaneGeometry(256, 256, 256, 256),
-      new THREE.ShaderMaterial({
-        uniforms: customUniforms,
-        vertexShader: glslify(__dirname + "/glsl/vertex.glsl"),
-        fragmentShader: glslify(__dirname + "/glsl/fragment.glsl")
-      })
+      new THREE.PlaneGeometry(256, 256, 256, 256), material
   );
   scene.add(screen);
 
@@ -91,5 +91,5 @@ window.addEventListener('resize', function() {
 setup();
 
 $(document).ready(function() {
-    ReactDOM.render(<ShaderPlayer audio={audio}/>, document.getElementById('shader-player'));
+    ReactDOM.render(<ShaderPlayer audio={audio} screen={screen} />, document.getElementById('shader-player'));
 });
