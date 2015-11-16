@@ -2,7 +2,20 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Button } from 'react-bootstrap';
 import THREE from 'three';
+import cookie from 'react-cookie';
+
 var glslify = require('glslify');
+
+var shaders = [
+  {
+    "name": "Lines",
+    "filename": "lines.glsl"
+  },
+  {
+    "name": "Flower",
+    "filename": "flower.glsl"
+  }
+];
 
 let PlayButton = React.createClass({
   render() {
@@ -76,6 +89,9 @@ let FastForwardButton = React.createClass({
 });
 
 let NextButton = React.createClass({
+  componentDidMount() {
+    cookie.save('currentShader', 0);
+  },
   render() {
     return (
       <Button onClick={this._handleClick}>
@@ -84,9 +100,21 @@ let NextButton = React.createClass({
     );
   },
   _handleClick() {
+    let currentShader = cookie.load('currentShader');
+
+    if (currentShader >= shaders.length - 1)
+      currentShader = 0;
+    else
+      currentShader ++;
+
+    var shader = shaders[currentShader];
+    alert(shader.filename);
+
     screen = this.props.screen;
-    screen.material.fragmentShader = glslify(__dirname + '/../glsl/lines.glsl');
+    screen.material.fragmentShader = glslify(__dirname + '/../glsl/' + shader.filename);
     screen.material.needsUpdate = true;
+
+    cookie.save('currentShader', currentShader);
   }
 });
 
