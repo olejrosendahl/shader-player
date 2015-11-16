@@ -9,11 +9,11 @@ var glslify = require('glslify');
 var shaders = [
   {
     "name": "Lines",
-    "filename": "lines.glsl"
+    "shader": glslify(`${__dirname}/../glsl/lines.glsl`)
   },
   {
     "name": "Flower",
-    "filename": "flower.glsl"
+    "shader": glslify(`${__dirname}/../glsl/flower.glsl`)
   }
 ];
 
@@ -107,11 +107,8 @@ let NextButton = React.createClass({
     else
       currentShader ++;
 
-    var shader = shaders[currentShader];
-    alert(shader.filename);
-
     screen = this.props.screen;
-    screen.material.fragmentShader = glslify(__dirname + '/../glsl/' + shader.filename);
+    screen.material.fragmentShader = shaders[currentShader].shader;
     screen.material.needsUpdate = true;
 
     cookie.save('currentShader', currentShader);
