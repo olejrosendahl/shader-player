@@ -33,6 +33,7 @@
     "esparse": "^0.1.2",
     "glslify": "^2.3.1",
     "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.0",
     "gulp-load-plugins": "^0.10.0",
     "gulp-util": "^3.0.6",
     "run-sequence": "^1.1.4",

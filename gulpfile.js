@@ -8,6 +8,7 @@ var args = require('yargs').argv,
 
         vendorDir: './build',
         distDir: './build/js',
+        srcDir: './src/js',
 
         noStackTrace: true,
         afterBuild: ['eslint']
