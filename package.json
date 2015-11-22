@@ -21,7 +21,6 @@
     "npm": "^3.3.5",
     "react": "^0.14.0",
     "react-bootstrap": "^0.27.2",
-    "react-cookie": "^0.4.2",
     "react-dom": "^0.14.0",
     "react-fontawesome": "^0.3.3",
     "three": "^0.72.0"
@@ -36,10 +35,7 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-eslint": "^1.1.0",
     "gulp-load-plugins": "^0.10.0",
-    "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^2.0.5",
-    "gulp-sass": "^2.1.0",
-    "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.6",
     "run-sequence": "^1.1.5",
     "vinyl-source-stream": "^1.1.0",

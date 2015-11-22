@@ -2,7 +2,6 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Button } from 'react-bootstrap';
 import THREE from 'three';
-import cookie from 'react-cookie';
 
 var glslify = require('glslify');
 
@@ -94,8 +93,8 @@ let FastForwardButton = React.createClass({
 });
 
 let NextButton = React.createClass({
-  componentDidMount() {
-    cookie.save('currentShader', 0);
+  getInitialState() {
+    return {currentShader: 0};
   },
   render() {
     return (
@@ -105,18 +104,14 @@ let NextButton = React.createClass({
     );
   },
   _handleClick() {
-    let currentShader = cookie.load('currentShader');
-
-    if (currentShader >= shaders.length - 1)
-      currentShader = 0;
+    if (this.state.currentShader >= shaders.length - 1)
+      this.setState({currentShader: 0});
     else
-      currentShader ++;
+      this.setState({currentShader: this.state.currentShader + 1});
 
     screen = this.props.screen;
-    screen.material.fragmentShader = shaders[currentShader].shader;
+    screen.material.fragmentShader = shaders[this.state.currentShader].shader;
     screen.material.needsUpdate = true;
-
-    cookie.save('currentShader', currentShader);
   }
 });
 
