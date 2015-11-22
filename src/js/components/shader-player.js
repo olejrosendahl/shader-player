@@ -18,31 +18,33 @@ var shaders = [
 ];
 
 let PlayButton = React.createClass({
-  render() {
-    return (
-      <Button onClick={this._handleClick}>
-        <FontAwesome name='play' />
-      </Button>
-    );
+  getInitialState: function() {
+    return {playing: false};
   },
-  _handleClick() {
+  render() {
+    if (!this.state.playing)
+      return (
+        <Button onClick={this._handlePlay}>
+          <FontAwesome name='play' />
+        </Button>
+      )
+    else
+      return (
+        <Button onClick={this._handlePause}>
+          <FontAwesome name='pause' />
+        </Button>
+      )
+  },
+  _handlePlay() {
     if (this.props.audio.currentTime == 0)
       this.props.audio.load();
 
     this.props.audio.play();
-  }
-});
-
-let PauseButton = React.createClass({
-  render() {
-    return (
-      <Button onClick={this._handleClick}>
-        <FontAwesome name='pause' />
-      </Button>
-    );
+    this.setState({playing: true});
   },
-  _handleClick() {
+  _handlePause() {
     this.props.audio.pause();
+    this.setState({playing: false});
   }
 });
 
@@ -124,7 +126,6 @@ let ShaderPlayer = React.createClass({
             <FastBackwardButton {...this.props} />
             <PlayButton {...this.props} />
             <FastForwardButton {...this.props} />
-            <PauseButton {...this.props} />
             <StopButton {...this.props} />
           </ul>
         </div>
