@@ -2,6 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Button } from 'react-bootstrap';
 import THREE from 'three';
+import Slider from 'rc-slider';
 
 var glslify = require('glslify');
 
@@ -115,6 +116,23 @@ let NextButton = React.createClass({
   }
 });
 
+let VolumeController = React.createClass({
+  componentDidMount() {
+    this.props.audio.volume = 0.5;
+  },
+  render() {
+    return (
+      <div style={{width: 400, margin: 50}}>
+        <p>Volume:</p>
+        <Slider defaultValue={50} onChange={this._handleChange} />
+      </div>
+    );
+  },
+  _handleChange(volume) {
+    this.props.audio.volume = volume / 100.0;
+  }
+});
+
 let ShaderPlayer = React.createClass({
   render() {
     return (
@@ -132,6 +150,7 @@ let ShaderPlayer = React.createClass({
             <NextButton {...this.props} />
           </ul>
         </div>
+        <VolumeController {...this.props} />
       </div>
     );
   }
