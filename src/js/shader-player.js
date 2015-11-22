@@ -63,7 +63,7 @@ function setupThreeJS() {
   scene = new THREE.Scene();
   clock = new THREE.Clock();
 
-  document.body.appendChild(renderer.domElement);
+  //document.body.appendChild(renderer.domElement);
 }
 
 function setupWorld() {

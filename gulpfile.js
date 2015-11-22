@@ -9,6 +9,7 @@ var args = require('yargs').argv,
         vendorDir: './build',
         distDir: './build/js',
         srcDir: './src/js',
+        sassDir: './src/sass',
 
         noStackTrace: true,
         afterBuild: ['eslint']
@@ -19,9 +20,10 @@ opts['config'] = config;
 require('./gulp/browserify')(gulp, opts, $);
 require('./gulp/jest')(gulp, opts, $);
 require('./gulp/eslint')(gulp, opts, $);
+require('./gulp/sass')(gulp, opts, $);
 
 gulp.task('default',['browserify']);
-gulp.task('watch', ['watch-browserify']);
+gulp.task('watch', ['watch-browserify', 'watch-sass']);
 
 gulp.task('test', ['jest']);
 gulp.task('test-one', ['watch-jest']);
