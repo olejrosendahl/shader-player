@@ -40,11 +40,14 @@ let PlayButton = React.createClass({
       this.props.audio.load();
 
     this.props.audio.play();
-    this.setState({playing: true});
+    this._toggleState();
   },
   _handlePause() {
     this.props.audio.pause();
-    this.setState({playing: false});
+    this._toggleState();
+  },
+  _toggleState() {
+    this.setState({playing: !this.state.playing});
   }
 });
 
