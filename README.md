@@ -13,9 +13,9 @@ shaders. Rebundle the sources during development:
 
 Since we'll be serving files from the file system we need to run a
 web-server. Any server will do. For development I'm currently using
-python's SimpleHTTPServer. Start the server with:
+`budo`, start the server with:
 
-    $ python -m SimpleHTTPServer
+    $ npm start
 
 ## Contributing
 
