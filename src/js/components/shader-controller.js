@@ -8,11 +8,11 @@ var glslify = require('glslify');
 var shaders = [
   {
     "name": "Flower",
-    "shader": glslify(`${__dirname}/../glsl/flower.glsl`)
+    "fragmentShader": glslify(`${__dirname}/../glsl/flower.glsl`)
   },
   {
     "name": "Lines",
-    "shader": glslify(`${__dirname}/../glsl/lines.glsl`)
+    "fragmentShader": glslify(`${__dirname}/../glsl/lines.glsl`)
   }
 ];
 
@@ -45,7 +45,7 @@ let ShaderController = React.createClass({
     }
 
     screen = this.props.screen;
-    screen.material.fragmentShader = newShader.shader;
+    screen.material.fragmentShader = newShader.fragmentShader;
     screen.material.needsUpdate = true;
 
     this.setState({currentShader: newCurrentShader, shader: newShader});
