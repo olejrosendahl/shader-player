@@ -1,6 +1,6 @@
 # shader-player
 
-React Music Player with WebGL Visualizations
+React Music Player with Fragment Shader Visualization
 
 ## Development
 
