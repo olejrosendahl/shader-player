@@ -1,53 +1,54 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Button } from 'react-bootstrap';
+import Display from './display';
 
 var glslify = require('glslify');
 
 var shaders = [
   {
-    "name": "Lines",
-    "shader": glslify(`${__dirname}/../glsl/lines.glsl`)
-  },
-  {
     "name": "Flower",
     "shader": glslify(`${__dirname}/../glsl/flower.glsl`)
+  },
+  {
+    "name": "Lines",
+    "shader": glslify(`${__dirname}/../glsl/lines.glsl`)
   }
 ];
 
-let NextButton = React.createClass({
-  getInitialState() {
-    return {currentShader: 0};
-  },
-  render() {
-    return (
-      <Button onClick={this._handleClick}>
-        <FontAwesome name='fast-forward' />
-      </Button>
-    );
-  },
-  _handleClick() {
-    if (this.state.currentShader >= shaders.length - 1)
-      this.setState({currentShader: 0});
-    else
-      this.setState({currentShader: this.state.currentShader + 1});
-
-    screen = this.props.screen;
-    screen.material.fragmentShader = shaders[this.state.currentShader].shader;
-    screen.material.needsUpdate = true;
-  }
-});
-
-
 let ShaderController = React.createClass({
+  getInitialState() {
+    return {
+      shader: shaders[0],
+      currentShader: 0
+    };
+  },
   render() {
+    console.log(this.state.currentShader);
     return (
       <div>
         <ul>
-          <NextButton {...this.props} />
+          <Button onClick={this._handleClick}>
+            <FontAwesome name='fast-forward' />
+          </Button>
+          <Display text={this.state.shader.name} />
         </ul>
       </div>
     );
+  },
+  _handleClick() {
+    let newCurrentShader = 0, newShader = shaders[0];
+
+    if (!(this.state.currentShader >= shaders.length - 1)) {
+      newCurrentShader = this.state.currentShader + 1;
+      newShader = shaders[newCurrentShader];
+    }
+
+    screen = this.props.screen;
+    screen.material.fragmentShader = newShader.shader;
+    screen.material.needsUpdate = true;
+
+    this.setState({currentShader: newCurrentShader, shader: newShader});
   }
 });
 
