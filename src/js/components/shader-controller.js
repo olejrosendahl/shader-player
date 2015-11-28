@@ -1,6 +1,5 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import { Button } from 'react-bootstrap';
+import { Button, Grid, Row, Col, Glyphicon } from 'react-bootstrap';
 import Display from './display';
 
 var glslify = require('glslify');
@@ -24,16 +23,17 @@ let ShaderController = React.createClass({
     };
   },
   render() {
-    console.log(this.state.currentShader);
     return (
-      <div>
-        <ul>
+      <Row id="shader-controller">
+        <Col md={3}>
           <Button onClick={this._handleClick}>
-            <FontAwesome name='fast-forward' />
+            <Glyphicon glyph="play" />
           </Button>
+        </Col>
+        <Col md={9}>
           <Display text={this.state.shader.name} />
-        </ul>
-      </div>
+        </Col>
+      </Row>
     );
   },
   _handleClick() {

@@ -1,2 +1,12 @@
 #shader-player {
   padding: 0px; }
+
+#music-controller {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+#volume-controller {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+  margin-right: 0px; }

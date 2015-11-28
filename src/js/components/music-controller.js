@@ -1,6 +1,5 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
-import { Button } from 'react-bootstrap';
+import { Button, Glyphicon } from 'react-bootstrap';
 
 let PlayButton = React.createClass({
   getInitialState: function() {
@@ -10,13 +9,13 @@ let PlayButton = React.createClass({
     if (!this.state.playing)
       return (
         <Button onClick={this._handlePlay}>
-          <FontAwesome name='play' />
+          <Glyphicon glyph='play' />
         </Button>
       )
     else
       return (
         <Button onClick={this._handlePause}>
-          <FontAwesome name='pause' />
+          <Glyphicon glyph='pause' />
         </Button>
       )
   },
@@ -40,7 +39,7 @@ let StopButton = React.createClass({
   render() {
     return (
       <Button onClick={this._handleClick}>
-        <FontAwesome name='stop' />
+        <Glyphicon glyph='stop' />
       </Button>
     );
   },
@@ -54,7 +53,7 @@ let FastBackwardButton = React.createClass({
   render() {
     return (
       <Button onClick={this._handleClick}>
-        <FontAwesome name='fast-backward' />
+        <Glyphicon glyph='fast-backward' />
       </Button>
     );
   },
@@ -69,7 +68,7 @@ let FastForwardButton = React.createClass({
   render() {
     return (
       <Button onClick={this._handleClick}>
-        <FontAwesome name='fast-forward' />
+        <Glyphicon glyph='fast-forward' />
       </Button>
     );
   },
@@ -82,12 +81,10 @@ let MusicController = React.createClass({
   render() {
     return (
       <div id="music-controller">
-        <ul>
-          <FastBackwardButton {...this.props} />
-          <PlayButton {...this.props} />
-          <FastForwardButton {...this.props} />
-          <StopButton {...this.props} />
-        </ul>
+        <FastBackwardButton {...this.props} />
+        <PlayButton {...this.props} />
+        <FastForwardButton {...this.props} />
+        <StopButton {...this.props} />
       </div>
     );
   }

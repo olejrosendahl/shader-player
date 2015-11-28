@@ -7,8 +7,7 @@ let VolumeController = React.createClass({
   },
   render() {
     return (
-      <div style={{width: 400, margin: 50}}>
-        <p>Volume:</p>
+      <div id="volume-controller">
         <Slider defaultValue={50} onChange={this._handleChange} />
       </div>
     );
