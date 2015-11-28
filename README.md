@@ -2,6 +2,14 @@
 
 React Music Player with Fragment Shader Visualization
 
+# Features
+
+- Music controllers to control music playback.
+- Visualization controller to pick fragment shader.
+- Fragment shader is affected by the music (should be configurable).
+- Fragment shader is affected by volume.
+- More...
+
 ## Development
 
 An audio file is needed for the player to work. Place the audio file in `assets/audio/audio.mp3`. The audio file needs to be in either `mpeg` or `ogg` format.
