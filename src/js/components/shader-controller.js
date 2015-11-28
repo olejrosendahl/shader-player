@@ -27,7 +27,7 @@ let ShaderController = React.createClass({
       <Row id="shader-controller">
         <Col md={3}>
           <Button onClick={this._handleClick}>
-            <Glyphicon glyph="play" />
+            <Glyphicon glyph="fast-forward" />
           </Button>
         </Col>
         <Col md={9}>
