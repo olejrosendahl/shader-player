@@ -19,19 +19,19 @@ audioSrc.connect(audioCtx.destination);
 var frequencyData = new Uint8Array(analyser.frequencyBinCount);
 
 var customUniforms = {
-  time: {
+  iGlobalTime: {
     type: "f",
     value: 1.0
   },
-  resolution: {
+  IResolution: {
     type: "v2",
     value: new THREE.Vector2(window.innerWidth, window.innerHeight)
   },
-  mouse: {
+  iMouse: {
     type: "v2",
     value: new THREE.Vector2(1.0, 1.0)
   },
-  volume: {
+  iVolume: {
     type: "f",
     value: 0.5,
   }
@@ -47,10 +47,10 @@ function setup() {
       var t = clock.getElapsedTime();
 
       analyser.getByteFrequencyData(frequencyData);
-      customUniforms.time.value = t;
-      customUniforms.mouse.value.x = frequencyData[1] * Math.PI / 100
-      customUniforms.mouse.value.y = frequencyData[2] * Math.PI / 100;
-      customUniforms.volume.value = audio.volume;
+      customUniforms.iGlobalTime.value = t;
+      customUniforms.iMouse.value.x = frequencyData[1] * Math.PI / 100
+      customUniforms.iMouse.value.y = frequencyData[2] * Math.PI / 100;
+      customUniforms.iVolume.value = audio.volume;
 
       requestAnimationFrame(animate);
   });
