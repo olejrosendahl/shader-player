@@ -7,11 +7,11 @@ var glslify = require('glslify');
 var shaders = [
   {
     "name": "Flower",
-    "fragmentShader": glslify(`${__dirname}/../glsl/flower.glsl`)
+    "fragmentShader": glslify(`${__dirname}/../../glsl/flower.glsl`)
   },
   {
     "name": "Lines",
-    "fragmentShader": glslify(`${__dirname}/../glsl/lines.glsl`)
+    "fragmentShader": glslify(`${__dirname}/../../glsl/lines.glsl`)
   }
 ];
 

@@ -74,8 +74,8 @@ function setupThreeJS() {
 function setupWorld() {
   material = new THREE.ShaderMaterial({
     uniforms: customUniforms,
-    vertexShader: glslify(__dirname + "/glsl/vertex.glsl"),
-    fragmentShader: glslify(__dirname + "/glsl/flower.glsl")
+    vertexShader: glslify(__dirname + "/../glsl/vertex.glsl"),
+    fragmentShader: glslify(__dirname + "/../glsl/flower.glsl")
   });
   screen = new THREE.Mesh(
       new THREE.PlaneGeometry(256, 256, 256, 256), material
