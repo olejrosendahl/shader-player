@@ -30,7 +30,11 @@ var customUniforms = {
   mouse: {
     type: "v2",
     value: new THREE.Vector2(1.0, 1.0)
-   },
+  },
+  volume: {
+    type: "f",
+    value: 0.5,
+  }
 };
 
 function setup() {
@@ -46,6 +50,7 @@ function setup() {
       customUniforms.time.value = t;
       customUniforms.mouse.value.x = frequencyData[1] * Math.PI / 100
       customUniforms.mouse.value.y = frequencyData[2] * Math.PI / 100;
+      customUniforms.volume.value = audio.volume;
 
       requestAnimationFrame(animate);
   });
