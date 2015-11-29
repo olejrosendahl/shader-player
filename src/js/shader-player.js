@@ -23,7 +23,7 @@ var customUniforms = {
     type: "f",
     value: 1.0
   },
-  IResolution: {
+  iResolution: {
     type: "v2",
     value: new THREE.Vector2(window.innerWidth, window.innerHeight)
   },
