@@ -25,6 +25,12 @@ web-server. Any server will do. For development I'm currently using
 
     $ npm start
 
+## Tests
+
+Run tests with:
+
+    $ gulp jest
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/olejrosendahl/shader-player. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
