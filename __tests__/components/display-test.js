@@ -1,10 +1,10 @@
 jest.dontMock('components/display');
 
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-const Display = require('../src/js/components/display');
+const Display = require('../../src/js/components/display');
 
 describe('Display', () => {
 
@@ -15,6 +15,6 @@ describe('Display', () => {
 
     var displayNode = ReactDOM.findDOMNode(display);
 
-    expect(displayNode.textContent).toEqual('Scrolling Text');
+    expect(displayNode.textContent).toEqual('Shader: Scrolling Text');
   });
 });
