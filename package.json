@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "budo --live",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_PATH=src/js:node_modules jest"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "three": "^0.72.0"
   },
   "devDependencies": {
+    "babel-jest": "^6.0.1",
     "babelify": "^6.3.0",
     "browserify": "^11.2.0",
     "budo": "^6.1.0",
@@ -39,9 +40,27 @@
     "gulp-load-plugins": "^0.10.0",
     "gulp-ruby-sass": "^2.0.5",
     "gulp-util": "^3.0.6",
+    "jest-cli": "^0.8.0",
     "run-sequence": "^1.1.5",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0",
     "yargs": "^3.30.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testPathDirs": [
+      "<rootDir>/__tests__"
+    ],
+    "testPathIgnorePatterns": [
+      "pending"
+    ],
+    "unmockedModulePathPatterns": [
+      "node_modules",
+      "react",
+      "react/addons",
+      "utils",
+      "__mocks__"
+    ],
+    "modulePathIgnorePatterns": []
   }
 }

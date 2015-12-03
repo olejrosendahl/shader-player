@@ -1,4 +1,4 @@
-jest.dontMock('../display');
+jest.dontMock('components/display');
 
 import React from 'react';
 import ReactDom from 'react-dom';
