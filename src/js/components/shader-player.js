@@ -7,17 +7,11 @@ import VolumeController from './volume-controller';
 let ShaderPlayer = React.createClass({
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col md={3}>
-            <MusicController {...this.props} />
-          </Col>
-          <Col md={9}>
-            <VolumeController {...this.props} />
-          </Col>
-        </Row>
+      <div>
+        <MusicController {...this.props} />
+        <VolumeController {...this.props} />
         <ShaderController {...this.props} />
-      </Grid>
+      </div>
     );
   }
 });
