@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/olejrosendahl/shader-player#readme",
   "dependencies": {
+    "glsl-noise": "0.0.0",
     "jquery": "^2.1.4",
     "npm": "^3.3.5",
     "rc-slider": "^3.1.0",

@@ -1,3 +1,5 @@
+#pragma glslify: noise = require(glsl-noise/simplex/2d)
+
 uniform float iGlobalTime;
 uniform vec2 iMouse;
 uniform vec2 iResolution;
@@ -13,6 +15,7 @@ void main() {
   p *= (2. + cos(iGlobalTime*.5 + length(p)) * (4.+21.*iMouse.x)) * rotate(iGlobalTime * (0.5-iMouse.y)) * iVolume;
 
   float f = (length(p / p.x / p.y));
+  f *= noise(p.xy);
 
   f *= cos(p.x * 1.5)-sin(p.x*p.y);
   f *= cos(p.y * 1.5)+sin(p.x*p.y);
