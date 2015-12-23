@@ -34,6 +34,18 @@ var customUniforms = {
   iVolume: {
     type: "f",
     value: 0.5,
+  },
+  tex0: {
+    type: "t",
+    value: THREE.ImageUtils.loadTexture('../../assets/textures/texl0.jpg')
+  },
+  tex1: {
+    type: "t",
+    value: THREE.ImageUtils.loadTexture('../../assets/textures/texl1.jpg')
+  },
+  tex2: {
+    type: "t",
+    value: THREE.ImageUtils.loadTexture('../../assets/textures/texl2.jpg')
   }
 };
 

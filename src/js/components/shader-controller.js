@@ -12,6 +12,10 @@ var shaders = [
   {
     "name": "Lines",
     "fragmentShader": glslify(`${__dirname}/../../glsl/lines.glsl`)
+  },
+  {
+    "name": 'Twist',
+    'fragmentShader': glslify(`${__dirname}/../../glsl/twist.glsl`)
   }
 ];
 
